@@ -52,18 +52,20 @@ export function App(){
     };
     return (
     <Fragment>
+        <section class="hero is-link">
+            <div class="hero-body has-text-centered">
+                <p class="title">
+                Welcome to registration form app!
+                </p>
 
-        {/* <TodoList todos={todos} toggleTodo={toggleTodo}/>
-        <input ref={todoTaskRef} type="text" placeholder="Nueva tarea"/>
-        <button onClick={handleTodoAdd}> Add </button>
-        <button onClick={handleClearAll}> Delete </button>
-        <div>Te quedan {todos.filter((todo) => !todo.completed).length}</div>
-        <div>
-            <button onClick={makeCallAPI}> Make a call </button>
-        </div> */}
-        <div>
+            </div>
+        </section>
+        <br></br>
+        <div class="container">
             <UserForm/>
         </div>
+            
+        
     </Fragment>
     );
 }

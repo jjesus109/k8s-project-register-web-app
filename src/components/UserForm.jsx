@@ -4,14 +4,33 @@ class UserForm extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            name: "Fulanito",
-            lastname: "Perez",
-            age: 0, 
-            position: "person",
+            name: "",
+            last_name: "",
+            age: "", 
+            position: "",
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+    makeCallAPI(){
+        let createdBody = JSON.stringify(this.state);
+        console.log(createdBody)
+        fetch('http://localhost:8000/app/v1/forms',
+        {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: createdBody
+        })
+        .then( res => {
+            var response = res.json();
+            console.log(response)
+            return response
+        })
+    }
+
     handleChange(event) {
         
         const value = event.target.value;
@@ -22,47 +41,79 @@ class UserForm extends React.Component{
         );
     }
     handleSubmit(event) {
-        alert('Heybro, your form has been submitted ' + this.state.name + '_' +this.state.lastname)
+        alert('Hey, bro! Your form has been submitted ')
         console.log('state:' +this.state);
+        this.makeCallAPI();
         event.preventDefault();
     }
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Name:
-                    <input 
-                    name="name"
-                    type="text"
-                    value={this.state.name} 
-                    onChange={this.handleChange}/>
-                </label>
-                <label>
-                    Last name:
-                    <input 
-                    name="lastname"
-                    type="text"
-                    value={this.state.lastname} 
-                    onChange={this.handleChange}/>
-                </label>
-                <label>
-                    Age:
-                    <input 
-                    name="age"
-                    type="text"
-                    value={this.state.age} 
-                    onChange={this.handleChange}/>
-                </label>
-                <label>
-                    Position:
-                    <input 
-                    name="position"
-                    type="text"
-                    value={this.state.position} 
-                    onChange={this.handleChange}/>
-                </label>
-                <input type="submit" value="submit"/>
-            </form>
+            <form class="box" onSubmit={this.handleSubmit}>
+                <p class="subtitle">Please complete the form</p>
+                    <div class="field">
+                            <label class="label">Name:</label>
+                        <div class="control">
+                            <input 
+                                class="input"
+                                placeholder="Your name"
+                                name="name"
+                                type="text"
+                                value={this.state.name} 
+                                onChange={this.handleChange}/>
+
+                        </div>
+                    </div>
+                <div class="field">
+                    <label class="label">Last name:</label>
+                    <div class="control">
+                        <input 
+                            class="input"
+                            placeholder="Your last name"
+                            name="last_name"
+                            type="text"
+                            value={this.state.last_name} 
+                            onChange={this.handleChange}/>
+
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Age</label>
+                    <div class="control">
+                        
+                        <input 
+                            placeholder="Your age"
+                            class="input"
+                            name="age"
+                            type="number"
+                            value={this.state.age} 
+                            onChange={this.handleChange}/>
+                   
+                    </div>
+                </div>
+
+
+                <div class="field">
+                    <label class="label">Job position</label>
+                    <div class="control">
+
+                        <input 
+                        placeholder="Your job position"
+                        class="input"
+                        name="position"
+                        type="text"
+                        value={this.state.position} 
+                        onChange={this.handleChange}/>
+
+                    </div>
+
+                </div>
+                    <div class="container has-text-centered">
+                        <input class="button is-light" type="submit" value="Submit response"/>
+                    </div>
+                    
+                </form>
+
         )
     }
 
