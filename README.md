@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Registration Web app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repo is a simple web app to register data from a user and send to an API
+
+
 
 ## Available Scripts
 
