@@ -15,7 +15,7 @@ class UserForm extends React.Component{
     makeCallAPI(){
         let createdBody = JSON.stringify(this.state);
         console.log(createdBody)
-        fetch('http://localhost:8000/app/v1/forms',
+        fetch('http://gsus-apis/app/v1/forms',
         {
             method: 'POST',
             mode: 'cors',
